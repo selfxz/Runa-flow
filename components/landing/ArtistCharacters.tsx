@@ -55,7 +55,7 @@ export default function ArtistCharacters() {
               <img
                 src={artist.image}
                 alt={artist.name}
-                style={{ ...artist.imageStyle, willChange: 'transform, filter' }}
+                style={artist.imageStyle}
                 className={`w-full h-full object-contain grayscale brightness-75 group-hover:grayscale-0 group-hover:scale-110 group-hover:brightness-110 transition-all duration-700 ease-out drop-shadow-[0_20px_60px_rgba(0,0,0,0.8)] ${artist.imageClass || ""}`}
               />
 

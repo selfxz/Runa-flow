@@ -19,8 +19,7 @@ export default function HeroVinyl() {
       rotation: 360,
       duration: 10,
       repeat: -1,
-      ease: "none",
-      force3D: true
+      ease: "none"
     });
   }, { scope: containerRef });
 
@@ -46,12 +45,9 @@ export default function HeroVinyl() {
       onClick={handleClick}
       className="relative w-[280px] h-[280px] lg:w-[350px] lg:h-[350px] cursor-pointer z-40"
     >
-      {/* Optimized static shadow behind the vinyl */}
-      <div className="absolute inset-0 rounded-full shadow-[0_0_50px_rgba(0,0,0,0.12)] z-0 pointer-events-none" />
-      
-      <div ref={vinylRef} className="relative w-full h-full group will-change-transform z-10">
+      <div ref={vinylRef} className="relative w-full h-full group">
         {/* The Disc */}
-        <svg viewBox="0 0 200 200" className="w-full h-full relative z-10">
+        <svg viewBox="0 0 200 200" className="w-full h-full drop-shadow-[0_0_50px_rgba(0,0,0,0.12)] relative z-10">
           {/* Main Disc Body */}
           <circle cx="100" cy="100" r="98" fill="#111" />
           
