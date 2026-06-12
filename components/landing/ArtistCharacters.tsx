@@ -48,15 +48,15 @@ export default function ArtistCharacters() {
           <Link
             key={artist.id}
             href={`/artista/${artist.id}`}
-            className="artist-card group relative flex-shrink-0 w-52 2xl:w-60 min-[1920px]:w-80 min-[2560px]:w-[26rem] transition-all duration-700 hover:z-50 opacity-0"
+            className="artist-card group relative flex-shrink-0 w-44 2xl:w-52 min-[1920px]:w-72 min-[2560px]:w-96 transition-all duration-700 hover:z-50 opacity-0"
           >
             {/* Image Container */}
-            <div className="relative h-[65vh] 2xl:h-[70vh] min-[1920px]:h-[75vh] min-[2560px]:h-[80vh] flex items-end justify-center overflow-visible transition-all duration-500 group-hover:-translate-y-4">
+            <div className="relative h-[60vh] 2xl:h-[65vh] min-[1920px]:h-[70vh] min-[2560px]:h-[75vh] flex items-center justify-center overflow-visible transition-all duration-500 group-hover:-translate-y-4">
               <img
                 src={artist.image}
                 alt={artist.name}
                 style={artist.imageStyle}
-                className={`w-full h-full object-contain object-bottom grayscale brightness-75 group-hover:grayscale-0 group-hover:scale-110 group-hover:brightness-110 transition-all duration-700 ease-out drop-shadow-[0_20px_60px_rgba(0,0,0,0.8)] ${artist.imageClass || ""}`}
+                className={`w-full h-full object-contain grayscale brightness-75 group-hover:grayscale-0 group-hover:scale-110 group-hover:brightness-110 transition-all duration-700 ease-out drop-shadow-[0_20px_60px_rgba(0,0,0,0.8)] ${artist.imageClass || ""}`}
               />
 
               {/* Reflection / Shadow */}
