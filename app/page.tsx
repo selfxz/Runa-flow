@@ -54,8 +54,8 @@ export default function Home() {
         </div>
 
         {/* Right Side (Artistas) */}
-        <div className="hero-right w-full xl:w-[60%] flex items-center justify-center xl:justify-end overflow-visible">
-          <div className="w-full h-full flex items-center justify-center xl:justify-start">
+        <div className="hero-right w-full xl:w-[60%] flex items-center justify-center overflow-visible">
+          <div className="w-full h-full flex items-center justify-center">
             <ArtistCharacters />
           </div>
         </div>

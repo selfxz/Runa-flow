@@ -37,13 +37,13 @@ export default function ArtistCharacters() {
   return (
     <div
       ref={container}
-      className="w-full relative overflow-visible flex justify-center xl:justify-start xl:pl-4"
+      className="w-full relative overflow-visible flex justify-center"
     >
       {/* Background Glow */}
       <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[500px] h-[300px] bg-orange-600/5 blur-[100px] rounded-full -z-10" />
 
       {/* Static Artist Row */}
-      <div className="hidden xl:flex -space-x-14 2xl:-space-x-16 min-[1920px]:-space-x-20 min-[2560px]:-space-x-24 px-2 items-center justify-center xl:justify-start overflow-visible">
+      <div className="hidden xl:flex -space-x-14 2xl:-space-x-16 min-[1920px]:-space-x-20 min-[2560px]:-space-x-24 px-2 items-center justify-center overflow-visible">
         {artists.map((artist) => (
           <Link
             key={artist.id}
@@ -51,7 +51,7 @@ export default function ArtistCharacters() {
             className="artist-card group relative flex-shrink-0 w-52 2xl:w-60 min-[1920px]:w-80 min-[2560px]:w-[26rem] transition-all duration-700 hover:z-50 opacity-0"
           >
             {/* Image Container */}
-            <div className="relative h-[70vh] 2xl:h-[75vh] min-[1920px]:h-[80vh] min-[2560px]:h-[85vh] flex items-end justify-center overflow-visible transition-all duration-500 group-hover:-translate-y-4">
+            <div className="relative h-[65vh] 2xl:h-[70vh] min-[1920px]:h-[75vh] min-[2560px]:h-[80vh] flex items-end justify-center overflow-visible transition-all duration-500 group-hover:-translate-y-4">
               <img
                 src={artist.image}
                 alt={artist.name}
