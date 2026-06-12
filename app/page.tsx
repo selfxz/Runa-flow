@@ -1,66 +1,70 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client";
+import React from "react";
+import Navbar from "@/components/landing/Navbar";
+import HeroVinyl from "@/components/landing/HeroVinyl";
+import ArtistCharacters from "@/components/landing/ArtistCharacters";
+import BackgroundAnimation from "@/components/landing/BackgroundAnimation";
+import Footer from "@/components/landing/Footer";
+
+import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
 
 export default function Home() {
+  const container = React.useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      gsap.from(".hero-left", {
+        x: -100,
+        opacity: 0,
+        duration: 1.5,
+        ease: "power4.out",
+        delay: 0.2,
+      });
+      gsap.from(".hero-right", {
+        x: 100,
+        opacity: 0,
+        duration: 1.5,
+        ease: "power4.out",
+        delay: 0.4,
+      });
+    },
+    { scope: container },
+  );
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main
+      ref={container}
+      className="min-h-screen w-full bg-black relative font-['Inter'] overflow-x-hidden flex flex-col"
+    >
+      {/* Dynamic Background */}
+      <BackgroundAnimation />
+
+      {/* Navigation */}
+      <Navbar />
+
+      {/* Hero & Artists Section - Now flex-1 to fill space */}
+      <section className="relative z-10 w-full flex-1 flex flex-col xl:flex-row items-center justify-start xl:justify-between px-6 md:px-12 lg:px-20 pt-32 xl:pt-24 pb-12 xl:pb-0 gap-16 xl:gap-0">
+        {/* Left Side (Disco) */}
+        <div className="hero-left w-full xl:w-[40%] flex flex-col items-center xl:items-start justify-center relative">
+          <div className="relative group scale-[0.6] sm:scale-[0.75] md:scale-[0.85] lg:scale-[0.9] xl:scale-[0.85] 2xl:scale-[1.1] transition-all duration-700">
+            <div className="absolute inset-0 bg-green-600/10 blur-[80px] rounded-full scale-150 animate-pulse" />
+            <HeroVinyl />
+          </div>
         </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        {/* Right Side (Artistas) */}
+        <div className="hero-right w-full xl:w-[60%] flex items-center justify-center xl:justify-end overflow-visible">
+          <div className="w-full h-full flex items-center justify-center xl:justify-start">
+            <ArtistCharacters />
+          </div>
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* Footer */}
+      <div className="relative z-10 w-full">
+        <Footer />
+      </div>
+    </main>
   );
 }
