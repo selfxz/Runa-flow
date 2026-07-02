@@ -35,13 +35,13 @@ const warmiVideos = [
     id: "warmi-video-2",
     title: "Tips para generar tus líricas",
     driveLink: "https://drive.google.com/file/d/1HAJvjRTJ0C9-QcfFgb1qS4YNDZecxkkO/view?usp=sharing",
-    embedUrl: "https://vimeo.com/1206330937?share=copy&fl=sv&fe=ci",
+    embedUrl: "https://drive.google.com/file/d/1WaDWIcQf8l1YYLX--0eOeBOWEeijJd1X/view?usp=drive_link",
   },
   {
     id: "warmi-video-3",
     title: "Hora de crear nuestra lírica",
     driveLink: "https://drive.google.com/file/d/1HAJvjRTJ0C9-QcfFgb1qS4YNDZecxkkO/view?usp=sharing",
-    embedUrl: "/videos/parte_3.mp4",
+    embedUrl: "https://drive.google.com/file/d/1lSDSXB-l0QzupZlLn0sLwg3oBv8n9853/view?usp=drive_link",
   },
 ];
 
