@@ -205,6 +205,12 @@ export default function WarmiFlowPage() {
         const videoId = url.split("vimeo.com/")[1]?.split("?")[0];
         return `https://player.vimeo.com/video/${videoId}?h=0&title=0&byline=0&portrait=0`;
       }
+      if (url.includes("drive.google.com")) {
+        const match = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
+        if (match && match[1]) {
+          return `https://drive.google.com/file/d/${match[1]}/preview`;
+        }
+      }
     } catch (e) {
       // Ignore for local paths
     }
@@ -441,7 +447,7 @@ export default function WarmiFlowPage() {
               {/* Video Area */}
               <div className="relative aspect-video bg-gradient-to-br from-purple-900/40 via-zinc-900 to-fuchsia-900/40 flex items-center justify-center">
                 {video.embedUrl ? (
-                  video.embedUrl.includes("vimeo.com") || video.embedUrl.includes("youtube.com") || video.embedUrl.includes("youtu.be") ? (
+                  video.embedUrl.includes("vimeo.com") || video.embedUrl.includes("youtube.com") || video.embedUrl.includes("youtu.be") || video.embedUrl.includes("drive.google.com") ? (
                     <div className="relative w-full h-full">
                       <iframe
                         src={getEmbedUrl(video.embedUrl)}
@@ -458,6 +464,14 @@ export default function WarmiFlowPage() {
                           <div className="absolute top-0 left-0 w-full h-16 bg-transparent z-10" />
                           {/* Bottom-right block (hides YouTube logo) */}
                           <div className="absolute bottom-0 right-0 w-28 h-14 bg-transparent z-10" />
+                        </>
+                      )}
+
+                      {/* Protective Overlay for Google Drive to block pop-out button */}
+                      {video.embedUrl.includes("drive.google.com") && (
+                        <>
+                          {/* Top right block (hides the pop-out icon) */}
+                          <div className="absolute top-0 right-0 w-16 h-16 bg-transparent z-10" />
                         </>
                       )}
                     </div>
