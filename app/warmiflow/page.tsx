@@ -35,7 +35,7 @@ const warmiVideos = [
     id: "warmi-video-2",
     title: "Tips para generar tus líricas",
     driveLink: "https://drive.google.com/file/d/1HAJvjRTJ0C9-QcfFgb1qS4YNDZecxkkO/view?usp=sharing",
-    embedUrl: "/videos/parte_2.mp4",
+    embedUrl: "https://player.vimeo.com/video/1206330937?h=0&title=0&byline=0&portrait=0",
   },
   {
     id: "warmi-video-3",
@@ -415,16 +415,26 @@ export default function WarmiFlowPage() {
               {/* Video Area */}
               <div className="relative aspect-video bg-gradient-to-br from-purple-900/40 via-zinc-900 to-fuchsia-900/40 flex items-center justify-center">
                 {video.embedUrl ? (
-                  <video
-                    key={video.id} // Force re-render on video change
-                    src={video.embedUrl}
-                    className="w-full h-full object-cover"
-                    controls
-                    controlsList="nodownload"
-                    playsInline
-                  >
-                    Tu navegador no soporta el elemento de video.
-                  </video>
+                  video.embedUrl.includes("vimeo.com") || video.embedUrl.includes("youtube.com") ? (
+                    <iframe
+                      src={video.embedUrl}
+                      className="w-full h-full object-cover"
+                      frameBorder="0"
+                      allow="autoplay; fullscreen; picture-in-picture"
+                      allowFullScreen
+                    ></iframe>
+                  ) : (
+                    <video
+                      key={video.id} // Force re-render on video change
+                      src={video.embedUrl}
+                      className="w-full h-full object-cover"
+                      controls
+                      controlsList="nodownload"
+                      playsInline
+                    >
+                      Tu navegador no soporta el elemento de video.
+                    </video>
+                  )
                 ) : (
                   <div className="text-center space-y-4">
                     <div className="w-24 h-24 mx-auto rounded-full bg-purple-500/10 border border-purple-500/20 flex items-center justify-center">
