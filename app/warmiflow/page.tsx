@@ -29,7 +29,7 @@ const warmiVideos = [
     id: "warmi-video-1",
     title: "Conoce a Farrah",
     driveLink: "https://drive.google.com/file/d/1HAJvjRTJ0C9-QcfFgb1qS4YNDZecxkkO/view?usp=sharing",
-    embedUrl: "/videos/parte_1.mp4",
+    embedUrl: "https://drive.google.com/file/d/1buUnSg440uui4NiTHQ_FB9SGFW9ME34z/view?usp=drive_link",
   },
   {
     id: "warmi-video-2",
