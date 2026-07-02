@@ -3,9 +3,10 @@ import React, { useRef, useEffect } from "react";
 import Navbar from "@/components/landing/Navbar";
 import BackgroundAnimation from "@/components/landing/BackgroundAnimation";
 import Footer from "@/components/landing/Footer";
+import Link from "next/link";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
-import { Calendar, MapPin, Info } from "lucide-react";
+import { Calendar, MapPin, Info, Flame, ArrowRight } from "lucide-react";
 
 const eventFlyers = [
   { 

@@ -110,6 +110,7 @@ export default function Navbar() {
              <Link href="/nuestro-equipo" onClick={() => setMenuOpen(false)} className="text-xs font-bold uppercase tracking-wider text-white/60">Nuestro equipo</Link>
           </div>
           <Link href="/eventos" onClick={() => setMenuOpen(false)} className="text-sm font-black uppercase tracking-widest">Eventos</Link>
+          <Link href="/warmiflow" onClick={() => setMenuOpen(false)} className="text-sm font-black uppercase tracking-widest bg-gradient-to-r from-purple-400 to-fuchsia-400 bg-clip-text text-transparent">WarmiFlow</Link>
           <Link href="/contactanos" onClick={() => setMenuOpen(false)} className="text-sm font-black uppercase tracking-widest text-green-500">Contáctanos</Link>
         </div>
       </div>

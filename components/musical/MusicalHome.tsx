@@ -14,6 +14,7 @@ import {
   User,
   X,
   ChevronDown,
+  Flame,
 } from "lucide-react";
 import { tracks } from "@/data/tracks";
 import { supabase } from "@/lib/supabase";
@@ -90,6 +91,10 @@ const MusicalHome = () => {
           <Link href="/" className="flex items-center gap-2 bg-orange-600 border border-orange-600 px-3 md:px-8 py-2 md:py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest text-white hover:bg-white hover:text-orange-600 transition-all italic group shadow-lg shadow-orange-600/20">
             <CornerUpLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
             <span className="hidden sm:inline">REGRESAR</span>
+          </Link>
+          <Link href="/warmiflow" className="flex items-center gap-2 bg-purple-600/10 border border-purple-500/30 px-3 md:px-6 py-2 md:py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest text-purple-400 hover:bg-purple-600 hover:text-white transition-all shadow-lg shadow-purple-600/5 group">
+            <Flame size={14} className="group-hover:scale-110 transition-transform duration-500" />
+            <span className="hidden sm:inline">WARMIFLOW</span>
           </Link>
         </div>
         <div className="flex items-center gap-2 md:gap-3">

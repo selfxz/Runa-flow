@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import BackgroundAnimation from "@/components/landing/BackgroundAnimation";
-import { MessageSquare, User, Clock, Music, CornerUpLeft, Quote, Sparkles, Disc } from "lucide-react";
+import { MessageSquare, User, Clock, Music, CornerUpLeft, Quote, Sparkles, Disc, Flame } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { tracks } from "@/data/tracks";
@@ -22,27 +22,53 @@ export default function HistorialComunidadPage() {
 
   useEffect(() => {
     const fetchGlobalComments = async () => {
-      const { data, error } = await supabase
+      const warmiVideoNames: Record<string, string> = {
+        "warmi-video-1": "Conoce a Farrah",
+        "warmi-video-2": "Tips para generar tus líricas",
+        "warmi-video-3": "Hora de crear nuestra lírica",
+      };
+
+      // Fetch track comments
+      const { data: trackData, error: trackErr } = await supabase
         .from('comments')
         .select('*')
         .order('created_at', { ascending: false });
       
-      if (!error && data) {
-        const mapped = data.map(c => {
-          const track = tracks.find(t => t.id === c.track_id);
-          return {
-            id: c.id,
-            userEmail: c.user_email,
-            userName: c.user_name || c.user_email.split('@')[0],
-            text: c.comment_text,
-            timestamp: new Date(c.created_at).getTime(),
-            trackId: c.track_id,
-            trackName: track?.title || "Track Desconocido",
-            artist: track?.artist || "Artista Desconocido"
-          };
-        });
-        setAllComments(mapped);
-      }
+      // Fetch warmi comments
+      const { data: warmiData, error: warmiErr } = await supabase
+        .from('warmi_comments')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      const trackComments = (!trackErr && trackData) ? trackData.map(c => {
+        const track = tracks.find(t => t.id === c.track_id);
+        return {
+          id: c.id,
+          userEmail: c.user_email,
+          userName: c.user_name || c.user_email.split('@')[0],
+          text: c.comment_text,
+          timestamp: new Date(c.created_at).getTime(),
+          trackId: c.track_id,
+          trackName: track?.title || "Track Desconocido",
+          artist: track?.artist || "Artista Desconocido"
+        };
+      }) : [];
+
+      const warmiComments = (!warmiErr && warmiData) ? warmiData.map(c => ({
+        id: c.id,
+        userEmail: c.user_email,
+        userName: c.user_name || c.user_email.split('@')[0],
+        text: c.comment_text,
+        timestamp: new Date(c.created_at).getTime(),
+        trackId: c.video_id,
+        trackName: warmiVideoNames[c.video_id] || "WarmiFlow Video",
+        artist: "WarmiFlow"
+      })) : [];
+
+      const allMerged = [...trackComments, ...warmiComments]
+        .sort((a, b) => b.timestamp - a.timestamp);
+
+      setAllComments(allMerged);
     };
 
     fetchGlobalComments();
@@ -71,6 +97,13 @@ export default function HistorialComunidadPage() {
         >
           <CornerUpLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
           <span className="hidden sm:inline">REGRESAR</span>
+        </button>
+        <button 
+          onClick={() => router.push("/warmiflow")}
+          className="flex items-center gap-2 md:gap-3 bg-purple-600/10 border-2 border-purple-600/20 px-4 md:px-8 py-2 md:py-3.5 rounded-full text-[11px] font-black uppercase tracking-[0.3em] hover:bg-purple-600 hover:text-white hover:border-purple-600 transition-all italic group shadow-xl"
+        >
+          <Flame size={16} className="group-hover:scale-110 transition-transform duration-500 text-purple-400 group-hover:text-white" /> 
+          <span className="text-purple-400 group-hover:text-white hidden sm:inline">WARMIFLOW</span>
         </button>
       </nav>
       <div className="flex-1 relative z-10 w-full max-w-6xl mx-auto px-6 pt-10 pb-20">
@@ -151,21 +184,21 @@ export default function HistorialComunidadPage() {
 
                   {/* Right: Track Origin - COMPACT */}
                   <div className="w-full lg:w-64 shrink-0">
-                    <Link href={`/musical/${comment.trackId}`} className="block h-full bg-black/40 border border-white/5 p-5 rounded-[1.5rem] group/track hover:border-orange-600/40 transition-all shadow-xl">
+                    <Link href={comment.trackId?.startsWith("warmi-") ? "/warmiflow" : `/musical/${comment.trackId}`} className={`block h-full bg-black/40 border border-white/5 p-5 rounded-[1.5rem] group/track transition-all shadow-xl ${comment.trackId?.startsWith("warmi-") ? "hover:border-purple-500/40" : "hover:border-orange-600/40"}`}>
                       <div className="flex items-center gap-2 mb-3">
-                        <div className="w-6 h-6 rounded-full bg-orange-600/10 flex items-center justify-center">
-                           <Music size={12} className="text-orange-600" />
+                        <div className={`w-6 h-6 rounded-full flex items-center justify-center ${comment.trackId?.startsWith("warmi-") ? "bg-purple-600/10" : "bg-orange-600/10"}`}>
+                           <Music size={12} className={comment.trackId?.startsWith("warmi-") ? "text-purple-500" : "text-orange-600"} />
                         </div>
-                        <span className="text-[8px] font-black uppercase tracking-widest text-white/20 italic">Track Origen</span>
+                        <span className="text-[8px] font-black uppercase tracking-widest text-white/20 italic">{comment.trackId?.startsWith("warmi-") ? "WarmiFlow" : "Track Origen"}</span>
                       </div>
-                      <h4 className="text-base font-black uppercase italic text-white group-hover/track:text-orange-500 transition-colors leading-tight">
+                      <h4 className={`text-base font-black uppercase italic text-white transition-colors leading-tight ${comment.trackId?.startsWith("warmi-") ? "group-hover/track:text-purple-400" : "group-hover/track:text-orange-500"}`}>
                         {comment.trackName}
                       </h4>
                       <p className="text-[10px] font-bold text-white/30 uppercase mt-1">{comment.artist}</p>
                       
                       <div className="mt-4 flex justify-end">
-                        <div className="px-4 py-1.5 bg-white/5 rounded-lg text-[8px] font-black uppercase tracking-[0.2em] text-white/30 group-hover/track:bg-green-600 group-hover/track:text-white transition-all shadow-lg">
-                          Escuchar
+                        <div className={`px-4 py-1.5 bg-white/5 rounded-lg text-[8px] font-black uppercase tracking-[0.2em] text-white/30 transition-all shadow-lg ${comment.trackId?.startsWith("warmi-") ? "group-hover/track:bg-purple-600 group-hover/track:text-white" : "group-hover/track:bg-green-600 group-hover/track:text-white"}`}>
+                          {comment.trackId?.startsWith("warmi-") ? "Ver Video" : "Escuchar"}
                         </div>
                       </div>
                     </Link>

@@ -43,7 +43,7 @@ export default function TeamSection() {
   }, { scope: container });
 
   return (
-    <section ref={container} className="py-24 px-10 flex flex-col items-center overflow-hidden bg-black">
+    <section ref={container} className="py-24 px-10 flex flex-col items-center overflow-hidden bg-transparent">
       <div className="max-w-7xl w-full">
         <div className="mb-20 space-y-4 section-title">
           <h3 className="text-[10px] font-black uppercase tracking-[0.6em] text-orange-600">Nuestro Colectivo</h3>

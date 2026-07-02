@@ -5,7 +5,7 @@ import { useGSAP } from "@gsap/react";
 
 
 
-export default function BackgroundAnimation() {
+export default function BackgroundAnimation({ hideImage = false }: { hideImage?: boolean } = {}) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
@@ -24,7 +24,15 @@ export default function BackgroundAnimation() {
   }, { scope: containerRef });
 
   return (
-    <div ref={containerRef} className="fixed inset-0 -z-20 overflow-hidden pointer-events-none bg-black">
+    <div ref={containerRef} className="fixed inset-0 z-0 overflow-hidden pointer-events-none bg-black">
+      {/* Runaflow Background Image */}
+      {!hideImage && (
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40"
+          style={{ backgroundImage: "url('/images/fondoRunaflow.png')" }}
+        />
+      )}
+
       {/* Animated Blobs (Subtle on Dark) */}
       <div className="blob absolute top-[-10%] left-[-10%] w-[60%] h-[60%] rounded-full bg-orange-900/20 blur-[120px]" />
       <div className="blob absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] rounded-full bg-blue-900/20 blur-[120px]" />
