@@ -15,7 +15,8 @@ const eventFlyers = [
     description: "Un espacio seguro para chicas que quieren transformar sus emociones en música. Aprende escritura, flow y expresión artística junto a Farrah en un taller donde tu voz será protagonista.", 
     date: "13 JUN 2026", 
     image: "/images/projects/warmilfow.png", 
-    category: "TALLER"
+    category: "TALLER",
+    url: "https://discord.com/channels/1487941234050863244/1523213794430681258"
   },
   { 
     id: 2, 
@@ -75,8 +76,11 @@ export default function EventosPage() {
 
           {/* Centered Grid with 3 Flyers */}
           <div className="flex flex-wrap justify-center gap-10 w-full">
-            {eventFlyers.map((event) => (
-              <div key={event.id} className="event-flyer-card opacity-0 group relative w-full sm:w-[320px] aspect-[3/4] overflow-hidden rounded-2xl cursor-pointer shadow-2xl transition-all duration-500 hover:-translate-y-2">
+            {eventFlyers.map((event) => {
+              const CardWrapper = event.url ? 'a' : 'div';
+              const wrapperProps = event.url ? { href: event.url, target: "_blank", rel: "noopener noreferrer" } : {};
+              return (
+              <CardWrapper key={event.id} {...wrapperProps} className="event-flyer-card opacity-0 group relative w-full sm:w-[320px] aspect-[3/4] overflow-hidden rounded-2xl cursor-pointer shadow-2xl transition-all duration-500 hover:-translate-y-2">
                 
                 {/* Image - Resetting brightness to be sure */}
                 <img 
@@ -127,8 +131,9 @@ export default function EventosPage() {
 
                 {/* Animated Border */}
                 <div className="absolute inset-0 border-2 border-white/0 group-hover:border-green-500/20 rounded-2xl transition-all duration-700" />
-              </div>
-            ))}
+              </CardWrapper>
+              );
+            })}
           </div>
         </div>
       </section>

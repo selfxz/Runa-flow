@@ -157,6 +157,8 @@ export default function ArtistaPage({ params }: Props) {
               <a 
                 key={project.title}
                 href={project.url}
+                target={project.url !== "#" ? "_blank" : undefined}
+                rel={project.url !== "#" ? "noopener noreferrer" : undefined}
                 className="project-card relative group w-full sm:w-[260px] aspect-[4/5] overflow-hidden rounded-2xl border border-white/5 bg-zinc-900/50 backdrop-blur-sm"
               >
                 {/* Project Image Placeholder */}

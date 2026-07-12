@@ -10,7 +10,7 @@ export const artists: Artist[] = [
     bgImage: "/images/characters/ABRAHAM.jpg",
     imageClass: "-translate-y-[10%]",
     projects: [
-      { title: "Documental Runa Flow", url: "#", cover: "/images/projects/documental.png", description: "Participa en el documental como la voz pionera del hip hop peruano." },
+      { title: "Documental Runa Flow", url: "https://youtu.be/kQKPMYwl9pE?si=Mkct-F24UGoo4A15", cover: "/images/projects/documental.png", description: "Participa en el documental como la voz pionera del hip hop peruano." },
       { title: "Pionero Hip Hop", url: "#", cover: "/images/projects/pionero.png", description: "Trayectoria de compromiso social y espiritual dentro de la cultura urbana." },
     ],
     socials: [
@@ -26,8 +26,8 @@ export const artists: Artist[] = [
     bgImage: "/images/characters/FARRAH.jpg",
     imageClass: "-translate-y-[10%]",
     projects: [
-      { title: "Taller Warmiflow", url: "#", cover: "/images/projects/warmilfow.png", description: "Taller de rap femenino · Documental con perspectiva de la mujer dentro del hip hop peruano." },
-      { title: "Disco Algazara", url: "#", cover: "/images/projects/algazara.png", description: "Productora del disco «Algazara» · Parte del equipo de «El Taller de rap feminista: La lírica que te parió»." },
+      { title: "Taller Warmiflow", url: "https://discord.com/channels/1487941234050863244/1523213794430681258", cover: "/images/projects/warmilfow.png", description: "Taller de rap femenino · Documental con perspectiva de la mujer dentro del hip hop peruano." },
+      { title: "Runaflow Documental", url: "https://youtu.be/QEUdAjJjzWE?si=JExxsu3mQG6w8lVS", cover: "/images/projects/algazara.png", description: "Perspectiva femenina dentro del colectivo del hiphop." },
     ],
     socials: [
       { platform: "instagram", url: "https://www.instagram.com/farrah.escobar" },
@@ -61,7 +61,7 @@ export const artists: Artist[] = [
     bgImage: "/images/characters/GUSTAVO.jpg",
     imageClass: "-translate-y-[10%]",
     projects: [
-      { title: "Documental Educativo", url: "#", cover: "/images/projects/docu_educativo.png", description: "Documental con perspectiva educativa sobre colectivos del hip hop." },
+      { title: "Documental Educativo", url: "https://youtu.be/NK1pb5KJYVg?si=FN8GPAaDdMyBkBxl", cover: "/images/projects/docu_educativo.png", description: "Documental con perspectiva educativa sobre colectivos del hip hop." },
       { title: "Cuarta Dimensión", url: "#", cover: "/images/projects/cuarta_dimension.png", description: "Gestor del proyecto «Cuarta Dimensión» en Barrios Altos." },
     ],
     socials: [
